@@ -27,6 +27,8 @@ router.get('/',async (req,res)=>{
         return res.status(200).send({msg:"Successfully found data", details: result})
     }catch(e){
         console.log(e)
+        const Error = errorHandler(error);
+        return res.status(Error.status).json(Error.details);
     }
 })
 
@@ -39,6 +41,8 @@ router.get('/:id',async (req,res)=>{
         return res.status(200).send({msg: "Successfully get the details", details : result})
     }catch(e){
         console.log(e)
+        const Error = errorHandler(error);
+        return res.status(Error.status).json(Error.details);
     }
 })
 
@@ -51,6 +55,8 @@ router.patch("/:id", validateRequestPayload(updatevalidation), async (req,res)=>
         return res.status(201).send({msg: "Successfully update the details", details : result})
     }catch(e){
         console.log(e)
+        const Error = errorHandler(error);
+        return res.status(Error.status).json(Error.details);
     }
 })
 
@@ -62,6 +68,8 @@ router.delete("/:id", async (req,res)=> {
         return res.status(201).send({msg: "Successfully deleted the details", details : result})
     }catch(e){
         console.log(e)
+        const Error = errorHandler(error);
+        return res.status(Error.status).json(Error.details);
     }
 })
 
