@@ -36,7 +36,7 @@ router.get('/',async (req,res)=>{
 
 router.get('/:id',async (req,res)=>{
     try{
-        const id = req.params;
+        const {id} = req.params;
         const result = await chemicalService.getChemialById(id);
         return res.status(200).send({msg: "Successfully get the details", details : result})
     }catch(e){
@@ -49,9 +49,9 @@ router.get('/:id',async (req,res)=>{
 //  update copound details for specific id
 router.patch("/:id", validateRequestPayload(updatevalidation), async (req,res)=>{
     try{
-        const id = req.params.id;
-        const {data} = req.body;
-        const result = await chemicalService.updateCompound(id, data);
+        const {id} = req.params;
+        const {body} = req;
+        const result = await chemicalService.updateCompound(id, body);
         return res.status(201).send({msg: "Successfully update the details", details : result})
     }catch(e){
         console.log(e)
@@ -63,7 +63,7 @@ router.patch("/:id", validateRequestPayload(updatevalidation), async (req,res)=>
 // delelte compound with specific id
 router.delete("/:id", async (req,res)=> {
     try{
-        const id = req.params.id;
+        const {id} = req.params;
         const result = await chemicalService.deleteChemical(id);
         return res.status(201).send({msg: "Successfully deleted the details", details : result})
     }catch(e){

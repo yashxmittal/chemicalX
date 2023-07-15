@@ -56,7 +56,7 @@ class chemicalService{
             };
             const filter = {
                 where : {
-                    id : id
+                    id
                 }
             }
             const result = await model.findOne(filter)
