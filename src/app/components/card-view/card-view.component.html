@@ -1,0 +1,24 @@
+<div class="card-list">
+<div class="card" *ngFor="let chemical of chemical">
+    <mat-card class="example-card" [routerLink]="['/chemical', chemical.id]">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ (chemical && chemical.name)? chemical.name : ""}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="chemical.image" alt="Photo">
+      </mat-card>
+</div>
+</div>
+<div>
+  <mat-paginator
+  [length]="totalRecords"
+      [pageIndex]="pageIndex"
+      [pageSize]="size"
+      [pageSizeOptions]="pageSizeOptions"
+      aria-label="Select page"
+      (page)="handlePageEvent($event)"
+      class="footer"
+      >
+
+    </mat-paginator>
+  </div>

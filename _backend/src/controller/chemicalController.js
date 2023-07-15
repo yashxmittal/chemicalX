@@ -11,9 +11,9 @@ router.post('/Bulk',fileHandler.single('file'),async (req,res)=> {
         const file = req.file;
         const result = await chemicalService.addBulkChemical(file);
         return res.status(200).send({msg : "Data Inserted Successfully", details : result})
-    }catch(error){
-        console.log("Error occured while bulk inserting chemical",error);
-        const Error = errorHandler(error);
+    }catch(e){
+        console.log("Error occured while bulk inserting chemical",e);
+        const Error = errorHandler(e);
         return res.status(Error.status).json(Error.details);
     }
 })
@@ -27,7 +27,7 @@ router.get('/',async (req,res)=>{
         return res.status(200).send({msg:"Successfully found data", details: result})
     }catch(e){
         console.log(e)
-        const Error = errorHandler(error);
+        const Error = errorHandler(e);
         return res.status(Error.status).json(Error.details);
     }
 })
@@ -41,7 +41,7 @@ router.get('/:id',async (req,res)=>{
         return res.status(200).send({msg: "Successfully get the details", details : result})
     }catch(e){
         console.log(e)
-        const Error = errorHandler(error);
+        const Error = errorHandler(e);
         return res.status(Error.status).json(Error.details);
     }
 })
@@ -49,13 +49,14 @@ router.get('/:id',async (req,res)=>{
 //  update copound details for specific id
 router.patch("/:id", validateRequestPayload(updatevalidation), async (req,res)=>{
     try{
+        console.log("deada",req.params)
         const {id} = req.params;
         const {body} = req;
         const result = await chemicalService.updateCompound(id, body);
         return res.status(201).send({msg: "Successfully update the details", details : result})
     }catch(e){
         console.log(e)
-        const Error = errorHandler(error);
+        const Error = errorHandler(e);
         return res.status(Error.status).json(Error.details);
     }
 })
@@ -68,7 +69,7 @@ router.delete("/:id", async (req,res)=> {
         return res.status(201).send({msg: "Successfully deleted the details", details : result})
     }catch(e){
         console.log(e)
-        const Error = errorHandler(error);
+        const Error = errorHandler(e);
         return res.status(Error.status).json(Error.details);
     }
 })

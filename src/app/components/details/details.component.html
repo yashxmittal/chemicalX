@@ -1,0 +1,21 @@
+<div class="card" >
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{(chemical && chemical.name)? chemical.name : ""}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]='(chemical && chemical.image)? chemical.image : ""' alt="Photo">
+        <mat-card-content>
+            <p>
+                {{ (chemical && chemical.description)? chemical.description:'' }}
+            </p>
+          </mat-card-content>
+  <mat-card-actions>
+      <button mat-button
+      color="primary"
+      (click)="openUpdateDialog($event, chemical)"
+      >update</button>
+      <button mat-button style="color: red;" (click)="delete($event, chemical.id)">delete</button>
+    </mat-card-actions>
+</mat-card>
+</div>
