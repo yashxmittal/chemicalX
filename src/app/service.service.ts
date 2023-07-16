@@ -26,10 +26,4 @@ export class ServiceService {
   deleteChemical(id:any){
     return this.http.delete<any>(`${this.backendUrl}/${id}`);
   }
-
-  uploadFile(file:any){
-    const formData: FormData = new FormData();
-    formData.append('file', file);
-    return this.http.post<any>(`${this.backendUrl}/upload`,formData);
-  }
 }
